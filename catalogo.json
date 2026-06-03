@@ -1,0 +1,10 @@
+[{"Nombre": "Camiseta", "Precio": 19.99, "Cantidad": 50, "Color": "Rojo"},
+{"Nombre": "Pantalones", "Precio": 39.99, "Cantidad": 30, "Color": "Azul"},
+{"Nombre": "Zapatos", "Precio": 59.99, "Cantidad": 20, "Color": "Negro"},
+{"Nombre": "Gorra", "Precio": 14.99, "Cantidad": 100, "Color": "Blanco"},
+{"Nombre": "Bolso", "Precio": 29.99, "Cantidad": 25, "Color": "Verde"},
+{"Nombre": "Reloj", "Precio": 49.99, "Cantidad": 15, "Color": "Plateado"},
+{"Nombre": "Gafas de sol", "Precio": 24.99, "Cantidad": 40, "Color": "Amarillo"},
+{"Nombre": "Bufanda", "Precio": 9.99, "Cantidad": 60, "Color": "Morado"},
+{"Nombre": "Guantes", "Precio": 12.99, "Cantidad": 80, "Color": "Gris"},
+{"Nombre": "Sombrero", "Precio": 19.99, "Cantidad": 35, "Color": "Naranja"}]

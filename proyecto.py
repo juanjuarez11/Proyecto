@@ -1,11 +1,16 @@
-import csv
-print(f"{"*" * 5}BIENVENIDO A LA HERMANDAD CHINA{"*" * 5}")
-with open("catalogo.csv") as archivo:
-        lector=csv.reader(archivo)
-        for fila in lector:
-            for producto in fila:
-                print(f" {producto} ",end="")
-            print("")
-print("MENU DE OPCCIONES:")
-print("1. COMPRAR")
-print("2. SALIR")
+import json
+try:
+    with open("catalogo.json", "r") as archivo:
+        catalogo=json.load(archivo)
+        for fila in catalogo:
+           print(f"Nombre: {fila["Nombre"]} | Precio: {fila["Precio"]} | Cantidad: {fila["Cantidad"]} | Color: {fila["Color"]}")
+    with open("catalogo.json") as archivo:
+        catalogo=json.load(archivo)
+        compra = input("Que producto desea comprar?: ").capitalize()
+        producto_encontrado = next((p for p in catalogo if p["Nombre"].capitalize() == compra), None)
+        if producto_encontrado:
+            print(f"Producto: {producto_encontrado["Nombre"]}")
+            print(f"Precio: {producto_encontrado["Precio"]}")
+            print(f"Cantidad: {producto_encontrado["Cantidad"]}")
+except Exception as e:
+    print(e)
