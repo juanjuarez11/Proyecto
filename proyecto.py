@@ -1,25 +1,41 @@
 import json
 try:
-    with open("credenciales.json", "r") as archivo:
-        credencial = {archivo}
-        print("INICIANDO SESIÓN")
-        autentificacion = input("Por favor, ingrese su usuario: ")
-        if autentificacion in credencial.keys():
+    with open("credenciales.json", "r", encoding= "utf-8") as archivo:
+        credencial = json.load(archivo)
+        print(credencial)
+        print("BIENVENIDO")
+        user = input("Por favor, ingrese su usuario: ")
+        if user in credencial.values():
             print("EXCELENTE, USUARIO CORRECTO")
             contrasena = input("Por favor, Ingrese su contraseña: ")
-            if contrasena in credencial:
+            if contrasena in credencial.values():
                 print("CONTRASEÑA CORRECTA")
+                print("INICIANDO SESION")
                 print("BIENVENIDO AL SISTEMA")
-                print("1. Agregar un producto")
+                print("1. Agregar productos")
                 print("2. Cargar inventario ya existente")
                 opcion = int(input("Ingrese una opción (1-2): "))
                 match opcion:
                     case 1:
-                        
+                        with open("catalogo.json", "w") as archivo:
+                            nombre = ""
+                            precio = 0
+                            cantidad = 0
+                            categoria = ""
+                            cant = int(input("Cuántos productos desea agregar?: "))
+
+                    case 2:
+                        try:
+                            nombre = input("Ingrese el nombre y dominio del archivo: ")
+                            with open(nombre, "r") as archivo:
+                                lector = json.load(archivo)
+
+                        except IOError:
+                            print("ERROR. CATÁLOGO NO ENCONTRADO")
             else:
                 print("CONTRASEÑA INCORRECTA")
 
         else:
-            print(f"ERROR: {credencial} no está en la lista de usuarios")
+            print(f"ERROR: {user} no está en la lista de usuarios")
 except Exception as e:
-    print("ERROR: {e}")
+    print(f"ERROR: {e}")
