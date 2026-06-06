@@ -6,7 +6,7 @@ try:
         print("BIENVENIDO")
         user = input("Por favor, ingrese su usuario: ")
         if user in credencial.values():
-            print("EXCELENTE, USUARIO CORRECTO")
+            print("USUARIO CORRECTO")
             contrasena = input("Por favor, Ingrese su contraseña: ")
             if contrasena in credencial.values():
                 print("CONTRASEÑA CORRECTA")
@@ -17,13 +17,25 @@ try:
                 opcion = int(input("Ingrese una opción (1-2): "))
                 match opcion:
                     case 1:
-                        with open("catalogo.json", "w") as archivo:
+                        with open("catalogo.json", "w", encoding="utf-8") as archivo:
                             nombre = ""
                             precio = 0
                             cantidad = 0
                             categoria = ""
                             cant = int(input("Cuántos productos desea agregar?: "))
-
+                            inventario = []
+                            for i in range(1, cant+1):
+                                nombre = input(f"Ingrese nombre del producto {i}: ")
+                                precio = float(input(f"Ingrese el precio del producto {i}: "))
+                                cantidad = int(input(f"Cantidad de unidades del producto {i}: "))
+                                categoria = input(f"Ingrese la categoría del producto {i}: ")
+                                producto = {
+                                    "nombre": nombre,
+                                    "precio": precio,
+                                    "cantidad": cantidad,
+                                    "categoria": categoria}
+                                inventario.append(producto)
+                            json.dump(inventario, archivo, indent=4, ensure_ascii=False)
                     case 2:
                         try:
                             nombre = input("Ingrese el nombre y dominio del archivo: ")
