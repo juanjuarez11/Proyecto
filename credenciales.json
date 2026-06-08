@@ -1,1 +1,10 @@
-{"usuario":"admin","contrasena":"123docker"}
+[
+    {
+        "usuario": "admin",
+        "contrasena": "123docker"
+    },
+    {
+        "usuario": "eddy",
+        "contrasena": 7535
+    }
+]
