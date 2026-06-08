@@ -2,6 +2,10 @@ import json
 try:
     with open("credenciales.json", "r", encoding= "utf-8") as archivo:
         credencial = json.load(archivo)
+        if isinstance(credencial, dict):
+            lista_de_usuarios = [credencial]
+        else:
+            lista_de_usuarios = credencial
         print("BIENVENIDO AL SISTEMA ACCESO")
 
         intentos_usuario=3
@@ -9,14 +13,18 @@ try:
 
         while intentos_usuario > 0:
             user = input("Por favor, ingrese su usuario: ")
-
-            if user == credencial["usuario"]:
+            usuario_encontrado = None
+            for u in lista_de_usuarios:
+                if u["usuario"] == user:
+                    usuario_encontrado = u
+                    break
+            if usuario_encontrado is not None:
                 print("USUARIO CORRECTO")
                 intentos_contrasena = 3
 
                 while intentos_contrasena > 0:
                     contrasena = input("Por favor, Ingrese su contraseña: ")
-                    if contrasena == credencial["contrasena"] and not acceso_concedido:
+                    if str(contrasena) == str(usuario_encontrado["contrasena"]):
                         print("CONTRASEÑA CORRECTA. INICIANDO SESIÓN....")
                         acceso_concedido = True
                         break
@@ -24,11 +32,10 @@ try:
                         intentos_contrasena-=1
                         print(f"CONTRASEÑA INCORRECTA. Intentos restantes: {intentos_contrasena}")
                 if acceso_concedido:
-                        break
+                    break
             else:
                 intentos_usuario-=1
-                print(f"ERROR: {user} no está en la lista de usuarios")
-                print(f"Intentos restantes {intentos_usuario}")
+                print(f"ERROR: {user} no está en la lista de usuarios. Intentos restantes {intentos_usuario}")
 
     if acceso_concedido:
         while True:           
@@ -76,7 +83,7 @@ try:
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
                         if isinstance (datos, dict):
-                            datos=[datos]
+                            datos={datos}
                         new_registro={
                             "usuario":username,
                             "contrasena":contra
@@ -94,8 +101,7 @@ try:
                 case _:
                     print("Opción no válida. Intente de nuevo.")
             
-    else:
-        print("Intentos agotados. Saliendo del sistema")
+    
 except FileNotFoundError:
     print("ERROR CRÍTICO: El archivo 'credenciales.json' no existe.")
 except Exception as e:
