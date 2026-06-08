@@ -35,7 +35,7 @@ try:
             print("BIENVENIDO AL SISTEMA")
             print("1. Agregar productos")
             print("2. Cargar inventario ya existente")
-            print("3. Agregar usuario")
+            print("3. Agregar nuevos usuarios")
             print("4. Salir del sistema")
             opcion = int(input("Ingrese una opción (1-4): "))
             match opcion:
@@ -58,6 +58,8 @@ try:
                                 "cantidad": cantidad,
                                 "categoria": categoria}
                             inventario.append(producto)
+
+                        with open("catalogo.json") as archivo:
                             json.dump(inventario, archivo, indent=4, ensure_ascii=False)
                 case 2:
                     try:
@@ -69,8 +71,8 @@ try:
                 case 3:
                     try:
                         print("Registro de usuarios:")
-                        username=str(input("Ingrese el nombre de usuario: "))
-                        contra=int(input("Ingrese una contraseña: "))
+                        username=input("Ingrese el nombre de usuario: ")
+                        contra=input("Ingrese una contraseña: ")
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
                         if isinstance (datos, dict):

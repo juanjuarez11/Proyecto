@@ -1,14 +1,8 @@
 [
     {
-        "nombre": "Salsa de Tomate",
+        "nombre": "agua",
         "precio": 15.0,
         "cantidad": 100,
-        "categoria": "salsa"
-    },
-    {
-        "nombre": "Agua",
-        "precio": 22.0,
-        "cantidad": 100,
-        "categoria": "Liquido"
+        "categoria": "agua"
     }
 ]

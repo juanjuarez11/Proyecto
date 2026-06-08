@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "Botella de Agua",
+        "precio": 10.99,
+        "stock": 100,
+        "descripcion": "Botella de agua 1L marca XYZ"
+        
+    },
+    {
+        "nombre": "Jugo de Mango",
+         "precio": 19.99,
+        "stock": 50,
+        "descripcion": "Jugo de mango 500ml marca ABC"
+    },
+    {
+        "nombre": "Galletas de Chocolate",
+        "precio": 5.99,
+        "stock": 200,
+        "descripcion": "Galletas de chocolate 100g marca DEF"
+        
+    }
+]
