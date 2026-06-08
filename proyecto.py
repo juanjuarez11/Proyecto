@@ -26,17 +26,18 @@ try:
                 if acceso_concedido:
                         break
             else:
-                inten1-=1
+                intentos_usuario-=1
                 print(f"ERROR: {user} no está en la lista de usuarios")
-                print(f"Intentos restantes {inten1}")
+                print(f"Intentos restantes {intentos_usuario}")
 
     if acceso_concedido:
         while True:           
             print("BIENVENIDO AL SISTEMA")
             print("1. Agregar productos")
             print("2. Cargar inventario ya existente")
-            print("3. Salir del sistema")
-            opcion = int(input("Ingrese una opción (1-3): "))
+            print("3. Agregar usuario")
+            print("4. Salir del sistema")
+            opcion = int(input("Ingrese una opción (1-4): "))
             match opcion:
                 case 1:
                     with open("catalogo.json", "w", encoding="utf-8") as archivo:
@@ -66,6 +67,26 @@ try:
                     except IOError:
                         print("ERROR. CATÁLOGO NO ENCONTRADO")
                 case 3:
+                    try:
+                        print("Registro de usuarios:")
+                        username=str(input("Ingrese el nombre de usuario: "))
+                        contra=int(input("Ingrese una contraseña: "))
+                        with open("credenciales.json","r", encoding="utf-8")as archivo:
+                            datos=json.load(archivo)
+                        if isinstance (datos, dict):
+                            datos=[datos]
+                        new_registro={
+                            "usuario":username,
+                            "contrasena":contra
+                        }
+                        datos.append(new_registro)
+                        with open("credenciales.json","w",encoding="utf-8")as archivo:
+                            json.dump(datos,archivo, indent=4, ensure_ascii=False)
+                        print(f"¡Usuario {username} agregado exitosamente!")
+                    except Exception as e:
+                        print(f"Ocurrio un error al guardar el usuario: {e}")
+
+                case 4:
                     print("Saliendo del sistema. Se cerró sesión exitosamente")
                     break
                 case _:
