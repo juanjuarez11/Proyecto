@@ -26,9 +26,9 @@ try:
                 if acceso_concedido:
                         break
             else:
-                inten1-=1
+                intentos_usuario-=1
                 print(f"ERROR: {user} no está en la lista de usuarios")
-                print(f"Intentos restantes {inten1}")
+                print(f"Intentos restantes {intentos_usuario}")
 
     if acceso_concedido:
         while True:           
