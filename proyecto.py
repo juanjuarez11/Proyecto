@@ -6,7 +6,9 @@ try:
             lista_de_usuarios = [credencial]
         else:
             lista_de_usuarios = credencial
+        print("="*10)
         print("BIENVENIDO AL SISTEMA ACCESO")
+        print("="*10)
 
         intentos_usuario=3
         acceso_concedido = False
@@ -40,13 +42,15 @@ try:
     if acceso_concedido:
         while True:           
             print("\n ---BIENVENIDO AL SISTEMA---")
-            print("1. Agregar productos")
-            print("2. Cargar inventario ya existente")
+            print("1. Crear catálogo desde cero")
+            print("2. Cargar catálogo ya existente")
             print("3. Agregar nuevos usuarios")
             print("4. Salir del sistema")
             opcion = int(input("Ingrese una opción (1-4): "))
             match opcion:
                 case 1:
+                    print("="*10)
+                    print("CREACIÓN DE CATÁLOGO")
                     with open("catalogo.json", "w", encoding="utf-8") as archivo:
                         nombre = ""
                         precio = 0
@@ -94,6 +98,8 @@ try:
 
                 case 2:
                     try:
+                        print("="*10)
+                        print("CARGAR CATALOGO:")
                         nombre = input("Ingrese el nombre y dominio del archivo: ")
                         with open(nombre, "r") as archivo:
                             lector = json.load(archivo)
@@ -122,10 +128,9 @@ try:
                         print("ERROR. CATÁLOGO NO ENCONTRADO")
                 case 3:
                     try:
-                        print("Registro de usuarios:")
+                        print("="*10)
+                        print("REGISTRO DE USUARIOS:")
                         
-
-
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
                             if isinstance (datos, dict):
