@@ -39,7 +39,7 @@ try:
 
     if acceso_concedido:
         while True:           
-            print("BIENVENIDO AL SISTEMA")
+            print("\n ---BIENVENIDO AL SISTEMA---")
             print("1. Agregar productos")
             print("2. Cargar inventario ya existente")
             print("3. Agregar nuevos usuarios")
@@ -55,10 +55,11 @@ try:
                         cant = int(input("Cuántos productos desea agregar?: "))
                         inventario = []
                         for i in range(1, cant+1):
-                            nombre = input(f"Ingrese nombre del producto {i}: ")
-                            precio = float(input(f"Ingrese el precio del producto {i}: "))
-                            cantidad = int(input(f"Cantidad de unidades del producto {i}: "))
-                            categoria = input(f"Ingrese la categoría del producto {i}: ")
+                            print(f"Producto {i}:")
+                            nombre = input("Nombre: ")
+                            precio = float(input("Precio: "))
+                            cantidad = int(input("Cantidad: "))
+                            categoria = input("Categoría: ")
                             producto = {
                                 "nombre": nombre,
                                 "precio": precio,
@@ -68,27 +69,54 @@ try:
 
                         with open("catalogo.json") as archivo:
                             json.dump(inventario, archivo, indent=4, ensure_ascii=False)
+                        with open("catalogo.json", "r") as archivo:
+                            lector = json.load(archivo)
+                            print(json.dumps(lector, indent=2, ensure_ascii=False))
                 case 2:
                     try:
                         nombre = input("Ingrese el nombre y dominio del archivo: ")
                         with open(nombre, "r") as archivo:
                             lector = json.load(archivo)
+                            print("CATALOGO CARGADO CON EXITO:")
+                            print(json.dumps(lector, indent=2, ensure_ascii=False))
                     except IOError:
                         print("ERROR. CATÁLOGO NO ENCONTRADO")
                 case 3:
                     try:
                         print("Registro de usuarios:")
-                        username=input("Ingrese el nombre de usuario: ")
-                        contra=input("Ingrese una contraseña: ")
+                        
+
+
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
                             if isinstance (datos, dict):
                                 datos=[datos]
-                            new_registro={
-                                "usuario":username,
-                                "contrasena":contra
-                            }
-                            datos.append(new_registro)
+                        
+                        p = True
+                        m = True
+                        while p:
+                            username=input("Ingrese el nombre de usuario: ")
+                            if any(u.get("usuario")==username for u in datos):
+                                print("¡Error! Ese nombre ya se encuentra registrado.")
+                                
+                            else:
+                                print("Excelente. Ese nombre de usuario se encuentra disponible.")
+                                p = False
+
+                                while m:
+                                    contra=input("Ingrese una contraseña: ")
+                                    if any(u.get("contrasena")== contra for u in datos):
+                                        print("¡Error! Por seguridad, no se puede usar un contraseña ya registrada.")
+
+                                    else:
+                                        print("Excelente. Es una buena contraseña")
+                                        break
+
+                        new_registro={
+                            "usuario":username,
+                            "contrasena":contra
+                        }
+                        datos.append(new_registro)
                         with open("credenciales.json","w",encoding="utf-8")as archivo:
                             json.dump(datos,archivo, indent=4, ensure_ascii=False)
                         print(f"¡Usuario {username} agregado exitosamente!")

@@ -6,5 +6,21 @@
     {
         "usuario": "eddy",
         "contrasena": "7535"
+    },
+    {
+        "usuario": "denis",
+        "contrasena": "7535"
+    },
+    {
+        "usuario": "admin1",
+        "contrasena": "123docker"
+    },
+    {
+        "usuario": "admin2",
+        "contrasena": "123docker"
+    },
+    {
+        "usuario": "admin3",
+        "contrasena": "123dockers"
     }
 ]
