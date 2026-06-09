@@ -82,13 +82,13 @@ try:
                         contra=input("Ingrese una contraseña: ")
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
-                        if isinstance (datos, dict):
-                            datos={datos}
-                        new_registro={
-                            "usuario":username,
-                            "contrasena":contra
-                        }
-                        datos.append(new_registro)
+                            if isinstance (datos, dict):
+                                datos=[datos]
+                            new_registro={
+                                "usuario":username,
+                                "contrasena":contra
+                            }
+                            datos.append(new_registro)
                         with open("credenciales.json","w",encoding="utf-8")as archivo:
                             json.dump(datos,archivo, indent=4, ensure_ascii=False)
                         print(f"¡Usuario {username} agregado exitosamente!")
