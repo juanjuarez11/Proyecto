@@ -72,6 +72,26 @@ try:
                         with open("catalogo.json", "r") as archivo:
                             lector = json.load(archivo)
                             print(json.dumps(lector, indent=2, ensure_ascii=False))
+                        
+                        print("Que operación desea salir?")
+                        print("1. Agregar producto/s")
+                        print("2. Eliminar producto/s")
+                        print("3. Actualizar datos de producto")
+                        print("4. Volver al menu anterior")
+
+                        while True:
+                            opcion1 = int(input("Por favor, escoja una opción: "))
+                            match opcion1:
+                                case 1:
+                                    break
+                                case 2:
+                                    break
+                                case 3:
+                                    break
+                                case 4:
+                                    print("Regresando al menu anterior...")
+                                    break
+
                 case 2:
                     try:
                         nombre = input("Ingrese el nombre y dominio del archivo: ")
@@ -79,6 +99,25 @@ try:
                             lector = json.load(archivo)
                             print("CATALOGO CARGADO CON EXITO:")
                             print(json.dumps(lector, indent=2, ensure_ascii=False))
+                        
+                        print("Que operación desea realizar?")
+                        print("1. Agregar producto/s")
+                        print("2. Eliminar producto/s")
+                        print("3. Actualizar datos de producto")
+                        print("4. Volver al menu anterior")
+
+                        while True:
+                            opcion1 = int(input("Por favor, escoja una opción: "))
+                            match opcion1:
+                                case 1:
+                                    break
+                                case 2:
+                                    break
+                                case 3:
+                                    break
+                                case 4:
+                                    print("Regresando al menu anterior...")
+                                    break
                     except IOError:
                         print("ERROR. CATÁLOGO NO ENCONTRADO")
                 case 3:
