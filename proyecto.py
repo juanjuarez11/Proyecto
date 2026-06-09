@@ -39,7 +39,7 @@ try:
 
     if acceso_concedido:
         while True:           
-            print("BIENVENIDO AL SISTEMA")
+            print("\n ---BIENVENIDO AL SISTEMA---")
             print("1. Agregar productos")
             print("2. Cargar inventario ya existente")
             print("3. Agregar nuevos usuarios")
@@ -79,11 +79,19 @@ try:
                     try:
                         print("Registro de usuarios:")
                         username=input("Ingrese el nombre de usuario: ")
-                        contra=input("Ingrese una contraseña: ")
+
+
                         with open("credenciales.json","r", encoding="utf-8")as archivo:
                             datos=json.load(archivo)
                         if isinstance (datos, dict):
-                            datos={datos}
+                            datos=[datos]
+                        
+                        if any(u.get("usuario")==username for u in datos):
+                            raise ValueError(f"¡Error! El usuario {username} ya se encuentra registrado.")
+                        contra=input("Ingrese una contraseña: ")
+                        if any(u.get("contraseña")== contra for u in datos):
+                            raise ValueError("¡Error! Por seguridad, no se puede usar un contraseña ya registrada.")
+                        
                         new_registro={
                             "usuario":username,
                             "contrasena":contra
