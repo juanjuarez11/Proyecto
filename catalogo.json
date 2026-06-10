@@ -1,20 +1,14 @@
 [
     {
-        "nombre": "Tomate",
-        "precio": 5.0,
-        "cantidad": 100,
-        "categoria": "Fruta"
-    },
-    {
-        "nombre": "Fruta",
-        "precio": 16666666.0,
+        "nombre": "Agua",
+        "precio": 15.0,
         "cantidad": 14,
-        "categoria": "Yuca"
+        "categoria": "Liquido"
     },
     {
-        "nombre": "Papa",
-        "precio": 14.0,
-        "cantidad": 25,
-        "categoria": "Vegetal"
+        "nombre": "Tomate",
+        "precio": 15.0,
+        "cantidad": 14,
+        "categoria": "Fruta"
     }
 ]
