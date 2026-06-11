@@ -3,12 +3,12 @@
         "nombre": "Agua",
         "precio": 15.0,
         "cantidad": 14,
-        "categoria": "Liquido"
+        "descripcion": "Liquido"
     },
     {
         "nombre": "Tomate",
         "precio": 15.0,
         "cantidad": 14,
-        "categoria": "Fruta"
+        "descripcion": "Fruta"
     }
 ]

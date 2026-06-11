@@ -112,15 +112,15 @@ try:
                     inventario = []
                     for i in range(1, cant+1):
                         print(f"Producto {i}:")
-                        nombre = input("Nombre: ")
+                        nombre = input("Nombre: ").title()
                         precio = float(input("Precio: "))
                         cantidad = int(input("Cantidad: "))
-                        categoria = input("Categoría: ")
+                        descrip = input("Descripción: ").title()
                         producto = {
                             "nombre": nombre,
                             "precio": precio,
                             "cantidad": cantidad,
-                            "categoria": categoria}
+                            "descripcion": descrip}
                         inventario.append(producto)
 
                     with open("catalogo.json", "w") as archivo:
@@ -143,15 +143,15 @@ try:
                                     inventario_actual = json.load(archivo)
                                     for i in range(1, cant+1):
                                         print(f"Producto {i}:")
-                                        nombre = input("Nombre: ")
+                                        nombre = input("Nombre: ").title()
                                         precio = float(input("Precio: "))
                                         cantidad = int(input("Cantidad: "))
-                                        categoria = input("Categoría: ")
+                                        descrip = input("Descripción: ").title()
                                         producto = {
                                             "nombre": nombre,
                                             "precio": precio,
                                             "cantidad": cantidad,
-                                            "categoria": categoria}
+                                            "descripcion": descrip}
                                         inventario_actual.append(producto)
 
                                 with open("catalogo.json", "w") as archivo:
@@ -159,9 +159,22 @@ try:
                                 with open("catalogo.json", "r") as archivo:
                                     lector = json.load(archivo)
                                     print(json.dumps(lector, indent=2, ensure_ascii=False))
-
                             case 2:
-                                break
+                                try:
+                                    with open("catalogo.json", "r", encoding="utf-8") as archivo:
+                                        productos = json.load(archivo)
+                                except FileNotFoundError:
+                                    print("El archivo no existe.")
+                                    productos = []
+                                prod_eliminar = input("Ingrese el nombre del producto a eliminar: ").title()
+                                prod_actualizados = [p for p in productos if p["nombre"] != prod_eliminar]
+                                if len(prod_actualizados) == len(productos):
+                                    print(f"Error. El producto {prod_eliminar} no se encuentra en el catálogo.")
+                                else:
+                                    with open("catalogo.json", "w") as archivo:
+                                        json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
+                                    print(f"El producto {prod_eliminar} ha sido eliminado.")
+
                             case 3:
                                 break
                             case 4:
@@ -174,8 +187,8 @@ try:
                     try:
                         print("="*30)
                         print("CARGAR CATALOGO:")
-                        nombre = input("Ingrese el nombre y dominio del archivo: ")
-                        with open(nombre, "r") as archivo:
+                        nombre_cat = input("Ingrese el nombre y dominio del archivo: ")
+                        with open(nombre_cat, "r") as archivo:
                             lector = json.load(archivo)
                             print("CATALOGO CARGADO CON EXITO:")
                             print(json.dumps(lector, indent=2, ensure_ascii=False))
@@ -190,29 +203,42 @@ try:
                             opcion2 = int(input("Por favor, escoja una opción: "))
                             match opcion2:
                                 case 1:
-                                    with open(nombre, "r") as archivo:
+                                    with open(nombre_cat, "r") as archivo:
                                         cant = int(input("Cuántos productos desea agregar?: "))
                                         inventario_actual = json.load(archivo)
                                         for i in range(1, cant+1):
                                             print(f"Producto {i}:")
-                                            nombre = input("Nombre: ")
+                                            nombre = input("Nombre: ").title()
                                             precio = float(input("Precio: "))
                                             cantidad = int(input("Cantidad: "))
-                                            categoria = input("Categoría: ")
+                                            descrip = input("Descripción: ").title()
                                             producto = {
                                                 "nombre": nombre,
                                                 "precio": precio,
                                                 "cantidad": cantidad,
-                                                "categoria": categoria}
+                                                "descripcion": descrip}
                                             inventario_actual.append(producto)
 
-                                    with open("catalogo.json", "w") as archivo:
+                                    with open(nombre_cat, "w") as archivo:
                                         json.dump(inventario_actual, archivo, indent=4, ensure_ascii=False)
-                                    with open("catalogo.json", "r") as archivo:
+                                    with open(nombre_cat, "r") as archivo:
                                         lector = json.load(archivo)
                                         print(json.dumps(lector, indent=2, ensure_ascii=False))
                                 case 2:
-                                    break
+                                    try:
+                                        with open(nombre_cat, "r", encoding="utf-8") as archivo:
+                                            productos = json.load(archivo)
+                                    except FileNotFoundError:
+                                        print("El archivo no existe.")
+                                        productos = []
+                                    prod_eliminar = input("Ingrese el nombre del producto a eliminar: ").title()
+                                    prod_actualizados = [p for p in productos if p["nombre"] != prod_eliminar]
+                                    if len(prod_actualizados) == len(productos):
+                                        print(f"Error. El producto {prod_eliminar} no se encuentra en el catálogo.")
+                                    else:
+                                        with open(nombre_cat, "w") as archivo:
+                                            json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
+                                        print(f"El producto {prod_eliminar} ha sido eliminado.")
                                 case 3:
                                     break
                                 case 4:
