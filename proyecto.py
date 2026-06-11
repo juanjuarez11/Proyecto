@@ -94,7 +94,8 @@ try:
                 acceso_concedido = True
             except Exception as e:
                 print(f"Ocurrio un error al guardar el usuario: {e}")
-
+        case _:
+            print("ERROR. Opción no valida")
     if acceso_concedido:
         print("\n ---BIENVENIDO AL SISTEMA---")
         while True:           
