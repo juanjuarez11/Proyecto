@@ -4,5 +4,11 @@
         "precio": 10.99,
         "cantidad": 100,
         "descripcion": "Botella de agua 1L marca XYZ"
+    },
+    {
+        "nombre": "Arroz Faisan",
+        "precio": 22.0,
+        "cantidad": 20,
+        "descripcion": "Bolsa De Arroz Faisan De 1 Lb"
     }
 ]
