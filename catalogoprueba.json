@@ -4,11 +4,5 @@
         "precio": 10.99,
         "cantidad": 100,
         "descripcion": "Botella de agua 1L marca XYZ"
-    },
-    {
-        "nombre": "Galletas De Chocolate",
-        "precio": 5.99,
-        "cantidad": 200,
-        "descripcion": "Galletas de chocolate 100g marca DEF"
     }
 ]

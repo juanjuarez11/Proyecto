@@ -1,14 +1,8 @@
 [
     {
-        "nombre": "Agua",
-        "precio": 15.0,
-        "cantidad": 14,
-        "descripcion": "Liquido"
-    },
-    {
         "nombre": "Tomate",
         "precio": 15.0,
         "cantidad": 14,
-        "descripcion": "Fruta"
+        "descripcion": "Fruta "
     }
 ]

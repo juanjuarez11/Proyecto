@@ -125,15 +125,12 @@ try:
 
                     with open("catalogo.json", "w") as archivo:
                         json.dump(inventario, archivo, indent=4, ensure_ascii=False)
-                    with open("catalogo.json", "r") as archivo:
-                        lector = json.load(archivo)
-                        print(json.dumps(lector, indent=2, ensure_ascii=False))
                     
                     while True:
                         print("Que operación desea salir?")
                         print("1. Agregar producto/s")
                         print("2. Eliminar producto/s")
-                        print("3. Actualizar datos de producto")
+                        print("3. Visualizar el catálogo")
                         print("4. Volver al menu anterior")
                         opcion1 = int(input("Por favor, escoja una opción: "))
                         match opcion1:
@@ -176,6 +173,12 @@ try:
                                     print(f"El producto {prod_eliminar} ha sido eliminado.")
 
                             case 3:
+                                try:
+                                    with open("catalogo.json","r",encoding="utf-8")as archivo:
+                                        datos=json.load(archivo)
+                                        print(json.dumps(datos, indent=4, ensure_ascii=False))
+                                except Exception as e:
+                                    print(f"Error. Surgió un error al ejecutar esta tarea. {e}")
                                 break
                             case 4:
                                 print("Regresando al menu anterior...")
@@ -191,13 +194,12 @@ try:
                         with open(nombre_cat, "r") as archivo:
                             lector = json.load(archivo)
                             print("CATALOGO CARGADO CON EXITO:")
-                            print(json.dumps(lector, indent=2, ensure_ascii=False))
                         
                         while True:
                             print("Que operación desea realizar?")
                             print("1. Agregar producto/s")
                             print("2. Eliminar producto/s")
-                            print("3. Actualizar datos de producto")
+                            print("3. Visualizar el catálogo")
                             print("4. Volver al menu anterior")
                         
                             opcion2 = int(input("Por favor, escoja una opción: "))
@@ -240,7 +242,12 @@ try:
                                             json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
                                         print(f"El producto {prod_eliminar} ha sido eliminado.")
                                 case 3:
-                                    break
+                                    try:
+                                        with open(nombre_cat,"r",encoding="utf-8")as archivo:
+                                            datos=json.load(archivo)
+                                            print(json.dumps(datos, indent=4, ensure_ascii=False))
+                                    except Exception as e:
+                                        print(f"Error. Surgió un error al ejecutar esta tarea. {e}")
                                 case 4:
                                     print("Regresando al menu anterior...")
                                     break
@@ -293,9 +300,7 @@ try:
                     print("Saliendo del sistema. Se cerró sesión exitosamente")
                     break
                 case _:
-                    print("Opción no válida. Intente de nuevo.")
-            
-    
+                    print("Opción no válida. Intente de nuevo.")  
 except FileNotFoundError:
     print("ERROR CRÍTICO: El archivo 'credenciales.json' no existe.")
 except Exception as e:
