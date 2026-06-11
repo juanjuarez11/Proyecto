@@ -1,4 +1,5 @@
 import json
+lista_de_usuarios=[]
 try:
     with open("credenciales.json", "r", encoding= "utf-8") as archivo:
         credencial = json.load(archivo)
@@ -133,7 +134,7 @@ try:
                         print("Que operación desea salir?")
                         print("1. Agregar producto/s")
                         print("2. Eliminar producto/s")
-                        print("3. Actualizar datos de producto")
+                        print("3. Visualizar el catálogo")
                         print("4. Volver al menu anterior")
                         opcion1 = int(input("Por favor, escoja una opción: "))
                         match opcion1:
@@ -176,6 +177,12 @@ try:
                                     print(f"El producto {prod_eliminar} ha sido eliminado.")
 
                             case 3:
+                                try:
+                                    with open("catalogo.json","r",encoding="utf-8")as archivo:
+                                        datos=json.load(archivo)
+                                        print(json.dumps(datos, indent=4, ensure_ascii=False))
+                                except IOError:
+                                    print("")
                                 break
                             case 4:
                                 print("Regresando al menu anterior...")
@@ -293,9 +300,7 @@ try:
                     print("Saliendo del sistema. Se cerró sesión exitosamente")
                     break
                 case _:
-                    print("Opción no válida. Intente de nuevo.")
-            
-    
+                    print("Opción no válida. Intente de nuevo.")  
 except FileNotFoundError:
     print("ERROR CRÍTICO: El archivo 'credenciales.json' no existe.")
 except Exception as e:
