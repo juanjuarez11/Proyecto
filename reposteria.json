@@ -1,0 +1,9 @@
+[
+    {
+        "id": "0001",
+        "nombre": "Premezcla",
+        "precio": 90.0,
+        "cantidad": 50,
+        "descripcion": "Harina Pastelera"
+    }
+]

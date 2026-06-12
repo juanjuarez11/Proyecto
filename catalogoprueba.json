@@ -1,11 +1,6 @@
 [
     {
-        "nombre": "Botella De Agua",
-        "precio": 10.99,
-        "cantidad": 100,
-        "descripcion": "Botella de agua 1L marca XYZ"
-    },
-    {
+        "id": "0002",
         "nombre": "Arroz Faisan",
         "precio": 22.0,
         "cantidad": 20,
