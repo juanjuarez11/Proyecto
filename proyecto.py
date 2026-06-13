@@ -16,42 +16,44 @@ try:
 
     match opcion_inicio:
         case 1:
-            print("="*30)
-            print("INICIO DE SESIÓN:")
+            try:
+                print("="*30)
+                print("INICIO DE SESIÓN:")
 
-            intentos_usuario=3
-            acceso_concedido = False
+                intentos_usuario=3
+                acceso_concedido = False
 
-            while intentos_usuario > 0:
-                user = input("Por favor, ingrese su usuario: ")
-                usuario_encontrado = None
-                
-                for u in lista_de_usuarios:
-                    if u["usuario"] == user:
-                        usuario_encontrado = u
-                        break
-
-                if usuario_encontrado is not None:
-                    print("USUARIO CORRECTO")
-                    intentos_contrasena = 3
-
-                    while intentos_contrasena > 0:
-                        contrasena = input("Por favor, Ingrese su contraseña: ")
-                        if str(contrasena) == str(usuario_encontrado["contrasena"]):
-                            print("CONTRASEÑA CORRECTA. INICIANDO SESIÓN....")
-                            acceso_concedido = True
+                while intentos_usuario > 0:
+                    user = input("Por favor, ingrese su usuario: ")
+                    usuario_encontrado = None
+                    
+                    for u in lista_de_usuarios:
+                        if u["usuario"] == user:
+                            usuario_encontrado = u
                             break
-                        else:
-                            intentos_contrasena-=1
-                            print(f"CONTRASEÑA INCORRECTA. Intentos restantes: {intentos_contrasena}")
 
-                    if acceso_concedido:
-                        break
+                    if usuario_encontrado is not None:
+                        print("USUARIO CORRECTO")
+                        intentos_contrasena = 3
 
-                else:
-                    intentos_usuario-=1
-                    print(f"ERROR: {user} no está en la lista de usuarios. Intentos restantes {intentos_usuario}")
-            
+                        while intentos_contrasena > 0:
+                            contrasena = input("Por favor, Ingrese su contraseña: ")
+                            if str(contrasena) == str(usuario_encontrado["contrasena"]):
+                                print("CONTRASEÑA CORRECTA. INICIANDO SESIÓN....")
+                                acceso_concedido = True
+                                break
+                            else:
+                                intentos_contrasena-=1
+                                print(f"CONTRASEÑA INCORRECTA. Intentos restantes: {intentos_contrasena}")
+
+                        if acceso_concedido:
+                            break
+
+                    else:
+                        intentos_usuario-=1
+                        print(f"ERROR: {user} no está en la lista de usuarios. Intentos restantes {intentos_usuario}")
+            except Exception as e:
+                print(f"ERROR. {e}")
         case 2:
             try:
                 print("="*30)
