@@ -293,6 +293,7 @@ try:
                                             for i in range(1, cant+1):
                                                 print(f"Producto {i}:")
                                                 while True:
+                                                    id_prod = input("ID del producto (Formato 0000): ")
                                                     if id_prod == "":
                                                         print("Error. Este campo no puede quedar vacio")
                                                     elif any(p.get("id") == id_prod for p in inventario_actual):

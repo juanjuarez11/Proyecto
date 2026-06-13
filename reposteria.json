@@ -2,15 +2,22 @@
     {
         "id": "0001",
         "nombre": "Premezcla",
-        "precio": 90.0,
+        "precio": 92.0,
         "cantidad": 50,
         "descripcion": "Harina Pastelera"
     },
     {
         "id": "0002",
         "nombre": "Dulce De Leche",
-        "precio": 82.0,
+        "precio": 90.0,
         "cantidad": 100,
         "descripcion": "Dulce De Leche Marca Mococa"
+    },
+    {
+        "id": "0003",
+        "nombre": "Leche Condensada",
+        "precio": 85.0,
+        "cantidad": 100,
+        "descripcion": "Leche Condensada De 1 Libra"
     }
 ]
