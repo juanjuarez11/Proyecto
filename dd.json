@@ -1,0 +1,9 @@
+[
+    {
+        "id": "0001",
+        "nombre": "Tomate",
+        "precio": 22.0,
+        "cantidad": 50,
+        "descripcion": "Fruta Fresca"
+    }
+]

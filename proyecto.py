@@ -144,8 +144,9 @@ try:
                         print("Que operación desea realizar?")
                         print("1. Agregar producto/s")
                         print("2. Eliminar producto")
-                        print("3. Visualizar el catálogo")
-                        print("4. Volver al menu anterior")
+                        print("3. Actualizar datos de un producto")
+                        print("4. Visualizar el catálogo")
+                        print("5. Volver al menu anterior")
                         opcion1 = int(input("Por favor, escoja una opción: "))
                         match opcion1:
                             case 1:
@@ -157,10 +158,15 @@ try:
                                         cant = int(input("Cuántos productos desea agregar?: "))
                                         for i in range(1, cant+1):
                                             print(f"Producto {i}:")
-                                            id_prod = input("ID del producto (Formato 0000): ")
-                                            if id_prod == "":
-                                                print("Error. Este campo no puede estar vacio")
-                                                break
+                                            while True:
+                                                id_prod = input("ID del producto (Formato 0000): ")
+                                                if id_prod == "":
+                                                    print("Error. Este campo no puede quedar vacio")
+                                                elif any(p.get("id") == id_prod for p in inventario_actual):
+                                                    print(f"Error. El ID {id_prod} ya está registrado. Ingrese otro por favor")
+                                                else:
+                                                    break
+                                            
                                             nombre = input("Nombre: ").title()
                                             precio = float(input("Precio: "))
                                             cantidad = int(input("Cantidad: "))
@@ -190,13 +196,59 @@ try:
                                 prod_eliminar = input("Ingrese el ID del producto a eliminar: ")
                                 prod_actualizados = [p for p in productos if p["id"] != prod_eliminar]
                                 if len(prod_actualizados) == len(productos):
-                                    print(f"Error. El producto con ID {prod_eliminar} no se encuentra en el catálogo.")
+                                    print(f"Error. El producto {prod_eliminar["nombre"]} no se encuentra en el catálogo.")
                                 else:
                                     with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                                         json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
-                                    print(f"El producto con ID {prod_eliminar} ha sido eliminado.")
-
+                                    print(f"El producto {prod_eliminar["nombre"]} ha sido eliminado.")
                             case 3:
+                                try:
+                                    print("="*30)
+                                    print("MODIFICAR DATOS DE PRODUCTO")
+                                    with open(nombre_cat_nuevo, "r", encoding="utf-8") as archivo:
+                                        productos = json.load(archivo)
+
+                                    id_buscar = input("Ingrese el ID del producto que desea modificar: ").strip()
+                                    producto_encontrado = None
+                                    for p in productos:
+                                        if p["id"] == id_buscar:
+                                            producto_encontrado = p
+                                            break
+                                    
+                                    if producto_encontrado is not None:
+                                        print(f"\nProducto encontrado: {producto_encontrado['nombre']}")
+                                        print("¿Qué dato desea modificar?")
+                                        print("1. Nombre")
+                                        print("2. Precio")
+                                        print("3. Cantidad")
+                                        print("4. Descripción")
+
+                                        opcion_mod = int(input("Seleccione una opción (1-4): "))
+
+                                        match opcion_mod:
+                                            case 1:
+                                                nuevo_nombre = input("Ingrese el nuevo nombre: ").strip().title()
+                                                producto_encontrado["nombre"] = nuevo_nombre
+                                            case 2:
+                                                nuevo_precio = float(input("Ingrese el nuevo precio: "))
+                                                producto_encontrado["precio"] = nuevo_precio
+                                            case 3:
+                                                nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+                                                producto_encontrado["cantidad"] = nueva_cantidad
+                                            case 4:
+                                                nueva_desc = input("Ingrese la nueva descripción: ").strip().title()
+                                                producto_encontrado["descripcion"] = nueva_desc
+                                            case _:
+                                                print("Opción no válida. No se hicieron cambios.")
+                                        
+                                        with open(nombre_cat_nuevo, "w", encoding="utf-8") as archivo:
+                                            json.dump(productos, archivo, indent= 4, ensure_ascii=False)
+                                        print("Producto actualizado con éxito")
+                                    else:
+                                        print(f"Error. El producto con ID {id_buscar} no existe.")
+                                except Exception as e:
+                                    print(f"Error al realizar la operación. {e}")
+                            case 4:
                                 try:
                                     print("="*30)
                                     print("VISUALIZAR CATALOGO")
@@ -205,7 +257,7 @@ try:
                                         print(json.dumps(datos, indent=4, ensure_ascii=False))
                                 except Exception as e:
                                     print(f"Error. Surgió un error al ejecutar esta tarea. {e}")
-                            case 4:
+                            case 5:
                                 print("Regresando al menu anterior...")
                                 break
                             case _:
@@ -224,9 +276,9 @@ try:
                             print("Que operación desea realizar?")
                             print("1. Agregar producto/s")
                             print("2. Eliminar producto")
-                            print("3. Visualizar el catálogo")
-                            print("4. Volver al menu anterior")
-                        
+                            print("3. Actualizar datos de un producto")
+                            print("4. Visualizar el catálogo")
+                            print("5. Volver al menu anterior")
                             opcion2 = int(input("Por favor, escoja una opción: "))
                             match opcion2:
                                 case 1:
@@ -238,10 +290,14 @@ try:
                                             inventario_actual = json.load(archivo)
                                             for i in range(1, cant+1):
                                                 print(f"Producto {i}:")
-                                                id_prod = input("ID del producto (Formato 0000): ")
-                                                if id_prod == "":
-                                                    print("Error. Este campo no puede estar vacio")
-                                                    break
+                                                while True:
+                                                    if id_prod == "":
+                                                        print("Error. Este campo no puede quedar vacio")
+                                                    elif any(p.get("id") == id_prod for p in inventario_actual):
+                                                        print(f"Error. El ID {id_prod} ya está registrado. Ingrese otro por favor")
+                                                    else:
+                                                        break
+                                            
                                                 nombre = input("Nombre: ").title()
                                                 precio = float(input("Precio: "))
                                                 cantidad = int(input("Cantidad: "))
@@ -279,13 +335,60 @@ try:
                                 case 3:
                                     try:
                                         print("="*30)
+                                        print("MODIFICAR DATOS DE PRODUCTO")
+                                        with open(nombre_cat, "r", encoding="utf-8") as archivo:
+                                            productos = json.load(archivo)
+
+                                        id_buscar = input("Ingrese el ID del producto que desea modificar: ").strip()
+                                        producto_encontrado = None
+                                        for p in productos:
+                                            if p["id"] == id_buscar:
+                                                producto_encontrado = p
+                                                break
+                                        
+                                        if producto_encontrado is not None:
+                                            print(f"\nProducto encontrado: {producto_encontrado['nombre']}")
+                                            print("¿Qué dato desea modificar?")
+                                            print("1. Nombre")
+                                            print("2. Precio")
+                                            print("3. Cantidad")
+                                            print("4. Descripción")
+
+                                            opcion_mod = int(input("Seleccione una opción (1-4): "))
+
+                                            match opcion_mod:
+                                                case 1:
+                                                    nuevo_nombre = input("Ingrese el nuevo nombre: ").strip().title()
+                                                    producto_encontrado["nombre"] = nuevo_nombre
+                                                case 2:
+                                                    nuevo_precio = float(input("Ingrese el nuevo precio: "))
+                                                    producto_encontrado["precio"] = nuevo_precio
+                                                case 3:
+                                                    nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+                                                    producto_encontrado["cantidad"] = nueva_cantidad
+                                                case 4:
+                                                    nueva_desc = input("Ingrese la nueva descripción: ").strip().title()
+                                                    producto_encontrado["descripcion"] = nueva_desc
+                                                case _:
+                                                    print("Opción no válida. No se hicieron cambios.")
+                                            
+                                            with open(nombre_cat, "w", encoding="utf-8") as archivo:
+                                                json.dump(productos, archivo, indent= 4, ensure_ascii=False)
+                                            print("Producto actualizado con éxito")
+                                        else:
+                                            print(f"Error. El producto con ID {id_buscar} no existe.")
+                                    except Exception as e:
+                                        print(f"Error al realizar la operación. {e}")
+                                case 4:
+                                    try:
+                                        print("="*30)
                                         print("VISUALIZAR CATALOGO")
                                         with open(nombre_cat,"r",encoding="utf-8")as archivo:
                                             datos=json.load(archivo)
                                             print(json.dumps(datos, indent=4, ensure_ascii=False))
                                     except Exception as e:
                                         print(f"Error. Surgió un error al ejecutar esta tarea. {e}")
-                                case 4:
+                                case 5:
                                     print("Regresando al menu anterior...")
                                     break
                                 case _:

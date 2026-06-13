@@ -5,5 +5,12 @@
         "precio": 90.0,
         "cantidad": 50,
         "descripcion": "Harina Pastelera"
+    },
+    {
+        "id": "0002",
+        "nombre": "Dulce De Leche",
+        "precio": 82.0,
+        "cantidad": 100,
+        "descripcion": "Dulce De Leche Marca Mococa"
     }
 ]
