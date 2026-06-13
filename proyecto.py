@@ -57,7 +57,7 @@ try:
                 print("="*30)
                 print("REGISTRO DE USUARIO:")
                         
-                with open("credenciales.json","r")as archivo:
+                with open("credenciales.json","r", encoding= "utf-8")as archivo:
                     datos=json.load(archivo)
                     if isinstance (datos, dict):
                         datos=[datos]
@@ -88,7 +88,7 @@ try:
                 }
                 datos.append(new_registro)
                             
-                with open("credenciales.json","w")as archivo:
+                with open("credenciales.json","w", encoding= "utf-8")as archivo:
                     json.dump(datos,archivo, indent=4, ensure_ascii=False)
                 print(f"¡Usuario {username} agregado exitosamente!")
                 acceso_concedido = True
@@ -135,7 +135,7 @@ try:
                                 "descripcion": descrip}
                             inventario.append(producto)
 
-                        with open(nombre_cat_nuevo, "w") as archivo:
+                        with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                             json.dump(inventario, archivo, indent=4, ensure_ascii=False)
                     except Exception as e:
                         print(f"ERROR. {e}")
@@ -173,7 +173,7 @@ try:
                                                 "descripcion": descrip}
                                             inventario_actual.append(producto)
 
-                                    with open(nombre_cat_nuevo, "w") as archivo:
+                                    with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                                         json.dump(inventario_actual, archivo, indent=4, ensure_ascii=False)
                                     print("CATALOGO ACTUALIZADO CON EXITO")
                                 except Exception as e:
@@ -192,7 +192,7 @@ try:
                                 if len(prod_actualizados) == len(productos):
                                     print(f"Error. El producto con ID {prod_eliminar} no se encuentra en el catálogo.")
                                 else:
-                                    with open(nombre_cat_nuevo, "w") as archivo:
+                                    with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                                         json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
                                     print(f"El producto con ID {prod_eliminar} ha sido eliminado.")
 
@@ -216,7 +216,7 @@ try:
                         print("="*30)
                         print("CARGAR CATALOGO")
                         nombre_cat = input("Ingrese el nombre y dominio del archivo (ej: inventario.json): ")
-                        with open(nombre_cat, "r") as archivo:
+                        with open(nombre_cat, "r", encoding= "utf-8") as archivo:
                             lector = json.load(archivo)
                             print("CATALOGO CARGADO CON EXITO:")
                         
@@ -254,7 +254,7 @@ try:
                                                     "descripcion": descrip}
                                                 inventario_actual.append(producto)
 
-                                        with open(nombre_cat, "w") as archivo:
+                                        with open(nombre_cat, "w", encoding= "utf-8") as archivo:
                                             json.dump(inventario_actual, archivo, indent=4, ensure_ascii=False)
                                     except Exception as e:
                                         print(f"Error: {e}")
@@ -273,7 +273,7 @@ try:
                                     if len(prod_actualizados) == len(productos):
                                         print(f"Error. El producto con ID {prod_eliminar} no se encuentra en el catálogo.")
                                     else:
-                                        with open(nombre_cat, "w") as archivo:
+                                        with open(nombre_cat, "w", encoding= "utf-8") as archivo:
                                             json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
                                         print(f"El producto con ID {prod_eliminar} ha sido eliminado.")
                                 case 3:
@@ -297,7 +297,7 @@ try:
                         print("="*30)
                         print("REGISTRO DE USUARIOS:")
                         
-                        with open("credenciales.json","r")as archivo:
+                        with open("credenciales.json","r", encoding= "utf-8")as archivo:
                             datos=json.load(archivo)
                             if isinstance (datos, dict):
                                 datos=[datos]
@@ -327,7 +327,7 @@ try:
                             "contrasena":contra
                         }
                         datos.append(new_registro)
-                        with open("credenciales.json","w")as archivo:
+                        with open("credenciales.json","w", encoding= "utf-8")as archivo:
                             json.dump(datos,archivo, indent=4, ensure_ascii=False)
                         print(f"¡Usuario {username} agregado exitosamente!")
                     except Exception as e:

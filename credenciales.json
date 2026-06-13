@@ -10,5 +10,21 @@
     {
         "usuario": "juanito",
         "contrasena": "1515"
+    },
+    {
+        "usuario": "admin1",
+        "contrasena": "1516"
+    },
+    {
+        "usuario": "1111",
+        "contrasena": "1111"
+    },
+    {
+        "usuario": "admin2",
+        "contrasena": "1121"
+    },
+    {
+        "usuario": "admin3",
+        "contrasena": "1113"
     }
 ]
