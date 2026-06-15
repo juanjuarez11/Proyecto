@@ -134,8 +134,18 @@ try:
                                 else:
                                     break
                             nombre = input("Nombre: ").title()
-                            precio = float(input("Precio: "))
-                            cantidad = int(input("Cantidad: "))
+                            while True:
+                                precio = float(input("Precio: "))
+                                if precio < 0 or precio == "":
+                                    print("ERROR. No se acepta este valor")
+                                else:
+                                    break
+                            while True:
+                                cantidad = int(input("Cantidad: "))
+                                if cantidad <= 0 or cantidad == "":
+                                    print("ERROR. No se acepta este valor.")
+                                else:
+                                    break
                             descrip = input("Descripción: ").title()
                             producto = {
                                 "id": id_prod,
@@ -180,8 +190,18 @@ try:
                                                     break
                                             
                                             nombre = input("Nombre: ").title()
-                                            precio = float(input("Precio: "))
-                                            cantidad = int(input("Cantidad: "))
+                                            while True:
+                                                precio = float(input("Precio: "))
+                                                if precio < 0 or precio == "":
+                                                    print("ERROR. No se acepta este valor")
+                                                else:
+                                                    break
+                                            while True:
+                                                cantidad = int(input("Cantidad: "))
+                                                if cantidad <= 0 or cantidad == "":
+                                                    print("ERROR. No se acepta este valor.")
+                                                else:
+                                                    break
                                             descrip = input("Descripción: ").title()
                                             producto = {
                                                 "id": id_prod,
@@ -244,11 +264,21 @@ try:
                                                 nuevo_nombre = input("Ingrese el nuevo nombre: ").strip().title()
                                                 producto_encontrado["nombre"] = nuevo_nombre
                                             case 2:
-                                                nuevo_precio = float(input("Ingrese el nuevo precio: "))
-                                                producto_encontrado["precio"] = nuevo_precio
+                                                while True:
+                                                    nuevo_precio = float(input("Ingrese el nuevo precio: "))
+                                                    if nuevo_precio < 0 or nuevo_precio == "":
+                                                        print("ERROR. No se acepta este valor")
+                                                    else:
+                                                        producto_encontrado["precio"] = nuevo_precio
+                                                        break
                                             case 3:
-                                                nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
-                                                producto_encontrado["cantidad"] = nueva_cantidad
+                                                while True:
+                                                    nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+                                                    if nueva_cantidad <= 0 or nueva_cantidad == "":
+                                                        print("ERROR. No se acepta este valor")
+                                                    else:
+                                                        producto_encontrado["cantidad"] = nueva_cantidad
+                                                        break
                                             case 4:
                                                 nueva_desc = input("Ingrese la nueva descripción: ").strip().title()
                                                 producto_encontrado["descripcion"] = nueva_desc
@@ -363,8 +393,18 @@ try:
                                                         break
                                             
                                                 nombre = input("Nombre: ").title()
-                                                precio = float(input("Precio: "))
-                                                cantidad = int(input("Cantidad: "))
+                                                while True:
+                                                    precio = float(input("Precio: "))
+                                                    if precio < 0 or precio == "":
+                                                        print("ERROR. No se acepta este valor")
+                                                    else:
+                                                        break
+                                                while True:
+                                                    cantidad = int(input("Cantidad: "))
+                                                    if cantidad <= 0 or cantidad == "":
+                                                        print("ERROR. No se acepta este valor.")
+                                                    else:
+                                                        break
                                                 descrip = input("Descripción: ").title()
                                                 producto = {
                                                     "id": id_prod,
@@ -428,11 +468,21 @@ try:
                                                     nuevo_nombre = input("Ingrese el nuevo nombre: ").strip().title()
                                                     producto_encontrado["nombre"] = nuevo_nombre
                                                 case 2:
-                                                    nuevo_precio = float(input("Ingrese el nuevo precio: "))
-                                                    producto_encontrado["precio"] = nuevo_precio
+                                                    while True:
+                                                        nuevo_precio = float(input("Ingrese el nuevo precio: "))
+                                                        if nuevo_precio < 0 or nuevo_precio == "":
+                                                            print("ERROR. No se acepta este valor")
+                                                        else:
+                                                            producto_encontrado["precio"] = nuevo_precio
+                                                            break
                                                 case 3:
-                                                    nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
-                                                    producto_encontrado["cantidad"] = nueva_cantidad
+                                                    while True:
+                                                        nueva_cantidad = int(input("Ingrese la nueva cantidad: "))
+                                                        if nueva_cantidad <= 0 or nueva_cantidad == "":
+                                                            print("ERROR. No se acepta este valor")
+                                                        else:
+                                                            producto_encontrado["cantidad"] = nueva_cantidad
+                                                            break
                                                 case 4:
                                                     nueva_desc = input("Ingrese la nueva descripción: ").strip().title()
                                                     producto_encontrado["descripcion"] = nueva_desc
