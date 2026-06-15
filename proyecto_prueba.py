@@ -16,14 +16,18 @@ try:
 
     match opcion_inicio:
         case 1:
+            print("")
             print("="*30)
             print("INICIO DE SESIÓN:")
+            print("="*30)
+            print("")
 
             intentos_usuario=3
             acceso_concedido = False
 
             while intentos_usuario > 0:
                 user = input("Por favor, ingrese su usuario: ")
+                print("")
                 usuario_encontrado = None
                 
                 for u in lista_de_usuarios:
@@ -103,7 +107,8 @@ try:
             print("2. Cargar catálogo ya existente")
             print("3. Agregar nuevos usuarios")
             print("4. Salir del sistema")
-            opcion = int(input("Ingrese una opción (1-4): "))
+            print("")
+            opcion = int(input("Ingrese una opción: "))
             match opcion:
                 case 1:
                     try: 
@@ -146,7 +151,9 @@ try:
                         print("2. Eliminar producto")
                         print("3. Actualizar datos de un producto")
                         print("4. Visualizar el catálogo")
-                        print("5. Volver al menu anterior")
+                        print("5. Registrar venta")
+                        print("6. Volver al menu anterior")
+                        print("")
                         opcion1 = int(input("Por favor, escoja una opción: "))
                         match opcion1:
                             case 1:
@@ -258,6 +265,50 @@ try:
                                 except Exception as e:
                                     print(f"Error. Surgió un error al ejecutar esta tarea. {e}")
                             case 5:
+                                try:
+                                    print("="*30)
+                                    print("REGISTRAR VENTA DE PRODUCTO")
+                                    with open(nombre_cat_nuevo, "r", encoding="utf-8") as archivo:
+                                        productos = json.load(archivo)
+
+                                    id_buscar = input("Ingrese el ID del producto vendido: ").strip()
+                                    
+                                    producto_encontrado = None
+                                    for p in productos:
+                                        if p["id"] == id_buscar:
+                                            producto_encontrado = p
+                                            break
+                                    
+                                    if producto_encontrado is not None:
+                                        print(f"Producto: {producto_encontrado['nombre']} | Existencias actuales: {producto_encontrado['cantidad']}")
+                                        
+                                        cant_vender = int(input("¿Cuántas unidades se vendieron?: "))
+                                        
+                                        if cant_vender > producto_encontrado["cantidad"]:
+                                            print(f"¡Error! No hay suficiente stock. Solo quedan {producto_encontrado['cantidad']} unidades.")
+                                        elif cant_vender <= 0:
+                                            print("¡Error! La cantidad vendida debe ser mayor a cero.")
+                                        else:
+                                            producto_encontrado["cantidad"] -= cant_vender
+
+                                            total_venta = cant_vender * producto_encontrado["precio"]
+                                            
+                                            with open(nombre_cat_nuevo, "w", encoding="utf-8") as archivo:
+                                                json.dump(productos, archivo, indent=4, ensure_ascii=False)
+                                            
+                                            print("="*30)
+                                            print("¡VENTA REGISTRADA CON ÉXITO!")
+                                            print(f"Unidades vendidas: {cant_vender}")
+                                            print(f"Total a cobrar: ${total_venta:.2f}")
+                                            print(f"Existencias restantes en inventario: {producto_encontrado['cantidad']}")
+                                            print("="*30)
+                                            
+                                    else:
+                                        print(f"Error. El producto con ID {id_buscar} no existe.")
+                                        
+                                except Exception as e:
+                                    print(f"Error al registrar la venta: {e}")
+                            case 6:
                                 print("Regresando al menu anterior...")
                                 break
                             case _:
