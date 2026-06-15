@@ -125,13 +125,14 @@ try:
                         inventario = []
                         for i in range(1, cant+1):
                             print(f"Producto {i}:")
-                            id_prod = input("ID del producto (Formato 0000): ")
-                            if id_prod == "":
-                                print("Error. Este campo no puede estar vacio")
-                            elif any(p.get("id") == id_prod for p in inventario):
-                                print(f"Error. El ID {id_prod} ya está registrado. Ingrese otro por favor")
-                            else:
-                                break
+                            while True:
+                                id_prod = input("ID del producto (Formato 0000): ")
+                                if id_prod == "":
+                                    print("Error. Este campo no puede estar vacio")
+                                elif any(p.get("id") == id_prod for p in inventario):
+                                    print(f"Error. El ID {id_prod} ya está registrado. Ingrese otro por favor")
+                                else:
+                                    break
                             nombre = input("Nombre: ").title()
                             precio = float(input("Precio: "))
                             cantidad = int(input("Cantidad: "))
