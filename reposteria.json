@@ -1,23 +1,23 @@
 [
     {
-        "id": "0001",
-        "nombre": "Premezcla",
-        "precio": 95.0,
-        "cantidad": 50,
-        "descripcion": "Harina Pastelera"
-    },
-    {
-        "id": "0002",
-        "nombre": "Dulce De Leche",
-        "precio": 90.0,
-        "cantidad": 100,
-        "descripcion": "Dulce De Leche Marca Mococa"
-    },
-    {
         "id": "0003",
         "nombre": "Leche Condensada",
         "precio": 85.0,
         "cantidad": 100,
         "descripcion": "Leche Condensada De 1 Libra"
+    },
+    {
+        "id": "0001",
+        "nombre": "Carton Redondo",
+        "precio": 12.0,
+        "cantidad": 100,
+        "descripcion": "Carton Redondo De 1 Libra"
+    },
+    {
+        "id": "0002",
+        "nombre": "Chantilli",
+        "precio": 145.0,
+        "cantidad": 100,
+        "descripcion": "Chantilli 1 Libra"
     }
 ]
