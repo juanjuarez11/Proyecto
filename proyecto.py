@@ -205,11 +205,11 @@ try:
                                 prod_eliminar = input("Ingrese el ID del producto a eliminar: ")
                                 prod_actualizados = [p for p in productos if p["id"] != prod_eliminar]
                                 if len(prod_actualizados) == len(productos):
-                                    print(f"Error. El producto {prod_eliminar["nombre"]} no se encuentra en el catálogo.")
+                                    print(f"Error. El producto con ID {prod_eliminar} no se encuentra en el catálogo.")
                                 else:
                                     with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                                         json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
-                                    print(f"El producto {prod_eliminar["nombre"]} ha sido eliminado.")
+                                    print(f"El producto con ID{prod_eliminar} ha sido eliminado.")
                                     print("="*30)
                             case 3:
                                 try:
