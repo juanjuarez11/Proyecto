@@ -234,7 +234,7 @@ try:
                                 else:
                                     with open(nombre_cat_nuevo, "w", encoding= "utf-8") as archivo:
                                         json.dump(prod_actualizados, archivo, indent=4, ensure_ascii=False)
-                                    print(f"El producto con ID{prod_eliminar} ha sido eliminado.")
+                                    print(f"El producto con ID {prod_eliminar} ha sido eliminado.")
                                     print("="*30)
                             case 3:
                                 try:
